@@ -71,7 +71,7 @@ public abstract class Node implements Linkable{
 
     @Override
     public Link getOutput(int index) {
-        System.out.println(index);
+        //System.out.println(index);
         return getOutputs().get(index);
     }
 

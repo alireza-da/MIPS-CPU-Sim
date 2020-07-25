@@ -47,8 +47,8 @@ public class Debugger {
                         System.out.print("0");
                     }
                 }
-                System.out.println("inputs:");
-                System.out.println(linkable.getInputs().size());
+                System.out.println('\n');
+                System.out.println("inputs:" + linkable.getInputs().size() + "bits");
                 for (Link link : linkable.getInputs()) {
                     if (link.getSignal().booleanValue() == true){
                         System.out.print("1");

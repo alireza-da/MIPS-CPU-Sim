@@ -30,7 +30,7 @@ public class Sample {
         }
 
         Simulator.debugger.addTrackItem(registerFile);
-        Simulator.debugger.setDelay(1000);
+        Simulator.debugger.setDelay(100);
         Simulator.circuit.startCircuit();
 
 
