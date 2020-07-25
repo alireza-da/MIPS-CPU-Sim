@@ -32,8 +32,8 @@ public abstract class Wrapper implements Linkable {
             outputSize = Integer.parseInt(String.valueOf(m.group(3)));
         }
 
-        inputStream = new DataStream("INPUT_STREAM", inputSize);
-        outputStream = new DataStream("OUTPUT_STREAM", outputSize);
+        inputStream = new DataStream("INPUT_STREAM " + getLabel(), inputSize);
+        outputStream = new DataStream("OUTPUT_STREAM  " + getLabel(), outputSize);
 
         addInput(links);
 

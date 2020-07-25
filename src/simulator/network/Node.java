@@ -46,6 +46,7 @@ public abstract class Node implements Linkable{
 
     @Override
     public Link getInput(int index) {
+        //System.out.println(getLabel());
         return getInputs().get(index);
     }
 

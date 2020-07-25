@@ -39,7 +39,7 @@ public class Circuit implements Runnable {
     }
 
     public void startCircuit() {
-        removeDataStream();
+        //removeDataStream();
         removeLoop();
         initializeNetList();
         addLoop();

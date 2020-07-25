@@ -281,10 +281,6 @@ public class RegisterFile extends Wrapper {
 
         m1.addInput(getInput(6));
 
-
-
-
-
         addOutput(m1.getOutput(0)); //read data 1 bit 0
 
 
@@ -437,7 +433,7 @@ public class RegisterFile extends Wrapper {
 
         for (int i = 0; i < 32 ; i++) {
 
-            m2.addInput(rf.get(i).getOutputs().get(7));
+            m8.addInput(rf.get(i).getOutputs().get(7));
 
         }
 
