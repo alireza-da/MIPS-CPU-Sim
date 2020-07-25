@@ -79,9 +79,6 @@ public class RegisterFile extends Wrapper {
             getRf().put(i,r);
         }
         for (int i = 0; i < 32; i++) {
-            if (rf == null){
-                continue;
-            }
             rf.get(i).addInput(getInput(0));
         }
 
@@ -158,14 +155,6 @@ public class RegisterFile extends Wrapper {
 
 
         //set write signal of register
-
-
-
-        if (rf == null){
-
-            return;
-
-        }
 
         rf.get(0).addInput(a1.getOutput(0));
 
