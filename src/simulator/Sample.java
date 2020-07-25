@@ -62,11 +62,7 @@ public class Sample {
 
 
         RegisterFile registerFile = new RegisterFile("Register file" , "49X64");
-        registerFile.setRf(new HashMap<Integer, Register>());
-        for (int i = 0 ; i < 32 ; i++) {
-            Register r = new Register("r"+i,"34X32",c.getOutput(0));
-            registerFile.getRf().put(i,r);
-        }
+
 
         ControlUnit controlUnit = new ControlUnit("Control Unit" , "6X9");
 

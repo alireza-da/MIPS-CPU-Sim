@@ -72,7 +72,16 @@ public class RegisterFile extends Wrapper {
 
     public void initialize() {
         // adding clock cycle to registers
+
+        setRf(new HashMap<Integer, Register>());
+        for (int i = 0 ; i < 32 ; i++) {
+            Register r = new Register("r"+i,"34X32");
+            getRf().put(i,r);
+        }
         for (int i = 0; i < 32; i++) {
+            if (rf == null){
+                continue;
+            }
             rf.get(i).addInput(getInput(0));
         }
 
@@ -251,11 +260,12 @@ public class RegisterFile extends Wrapper {
 
         //32 mux (32X1) with register addresses control lines
 
-        Mux32X1 m1 = new Mux32X1("mux1","32X1");
+        Mux32X1 m1 = new Mux32X1("mux1","37X1");
 
         for (int i = 0; i < 32 ; i++) {
 
-            m1.addInput(rf.get(i).getOutputs().get(0));
+            m1.addInput(rf.get(i).getOutput(0));
+
 
         }
 
@@ -279,7 +289,7 @@ public class RegisterFile extends Wrapper {
 
 
 
-        Mux32X1 m2 = new Mux32X1("mux2","32X1");
+        Mux32X1 m2 = new Mux32X1("mux2","37X1");
 
         for (int i = 0; i < 32 ; i++) {
 
@@ -303,7 +313,7 @@ public class RegisterFile extends Wrapper {
 
 
 
-        Mux32X1 m3 = new Mux32X1("mux3","32X1");
+        Mux32X1 m3 = new Mux32X1("mux3","37X1");
 
         for (int i = 0; i < 32 ; i++) {
 
@@ -327,7 +337,7 @@ public class RegisterFile extends Wrapper {
 
 
 
-        Mux32X1 m4 = new Mux32X1("mux4","32X1");
+        Mux32X1 m4 = new Mux32X1("mux4","37X1");
 
         for (int i = 0; i < 32 ; i++) {
 
@@ -351,7 +361,7 @@ public class RegisterFile extends Wrapper {
 
 
 
-        Mux32X1 m5 = new Mux32X1("mux5","32X1");
+        Mux32X1 m5 = new Mux32X1("mux5","37X1");
 
         for (int i = 0; i < 32 ; i++) {
 
@@ -375,7 +385,7 @@ public class RegisterFile extends Wrapper {
 
 
 
-        Mux32X1 m6 = new Mux32X1("mux6","32X1");
+        Mux32X1 m6 = new Mux32X1("mux6","37X1");
 
         for (int i = 0; i < 32 ; i++) {
 
@@ -399,7 +409,7 @@ public class RegisterFile extends Wrapper {
 
 
 
-        Mux32X1 m7 = new Mux32X1("mux7","32X1");
+        Mux32X1 m7 = new Mux32X1("mux7","37X1");
 
         for (int i = 0; i < 32 ; i++) {
 
@@ -423,7 +433,7 @@ public class RegisterFile extends Wrapper {
 
 
 
-        Mux32X1 m8 = new Mux32X1("mux8","32X1");
+        Mux32X1 m8 = new Mux32X1("mux8","37X1");
 
         for (int i = 0; i < 32 ; i++) {
 
@@ -447,7 +457,7 @@ public class RegisterFile extends Wrapper {
 
 
 
-        Mux32X1 m9 = new Mux32X1("mux9","32X1");
+        Mux32X1 m9 = new Mux32X1("mux9","37X1");
 
         for (int i = 0; i < 32 ; i++) {
 
@@ -471,7 +481,7 @@ public class RegisterFile extends Wrapper {
 
 
 
-        Mux32X1 m10 = new Mux32X1("mux10","32X1");
+        Mux32X1 m10 = new Mux32X1("mux10","37X1");
 
         for (int i = 0; i < 32 ; i++) {
 
@@ -495,7 +505,7 @@ public class RegisterFile extends Wrapper {
 
 
 
-        Mux32X1 m11 = new Mux32X1("mux11","32X1");
+        Mux32X1 m11 = new Mux32X1("mux11","37X1");
 
         for (int i = 0; i < 32 ; i++) {
 
@@ -519,7 +529,7 @@ public class RegisterFile extends Wrapper {
 
 
 
-        Mux32X1 m12 = new Mux32X1("mux12","32X1");
+        Mux32X1 m12 = new Mux32X1("mux12","37X1");
 
         for (int i = 0; i < 32 ; i++) {
 
@@ -543,7 +553,7 @@ public class RegisterFile extends Wrapper {
 
 
 
-        Mux32X1 m13 = new Mux32X1("mux13","32X1");
+        Mux32X1 m13 = new Mux32X1("mux13","37X1");
 
         for (int i = 0; i < 32 ; i++) {
 
@@ -567,7 +577,7 @@ public class RegisterFile extends Wrapper {
 
 
 
-        Mux32X1 m14 = new Mux32X1("mux14","32X1");
+        Mux32X1 m14 = new Mux32X1("mux14","37X1");
 
         for (int i = 0; i < 32 ; i++) {
 
@@ -591,7 +601,7 @@ public class RegisterFile extends Wrapper {
 
 
 
-        Mux32X1 m15 = new Mux32X1("mux15","32X1");
+        Mux32X1 m15 = new Mux32X1("mux15","37X1");
 
         for (int i = 0; i < 32 ; i++) {
 
@@ -615,7 +625,7 @@ public class RegisterFile extends Wrapper {
 
 
 
-        Mux32X1 m16 = new Mux32X1("mux16","32X1");
+        Mux32X1 m16 = new Mux32X1("mux16","37X1");
 
         for (int i = 0; i < 32 ; i++) {
 
@@ -639,7 +649,7 @@ public class RegisterFile extends Wrapper {
 
 
 
-        Mux32X1 m17 = new Mux32X1("mux17","32X1");
+        Mux32X1 m17 = new Mux32X1("mux17","37X1");
 
         for (int i = 0; i < 32 ; i++) {
 
@@ -663,7 +673,7 @@ public class RegisterFile extends Wrapper {
 
 
 
-        Mux32X1 m18 = new Mux32X1("mux18","32X1");
+        Mux32X1 m18 = new Mux32X1("mux18","37X1");
 
         for (int i = 0; i < 32 ; i++) {
 
@@ -687,7 +697,7 @@ public class RegisterFile extends Wrapper {
 
 
 
-        Mux32X1 m19 = new Mux32X1("mux19","32X1");
+        Mux32X1 m19 = new Mux32X1("mux19","37X1");
 
         for (int i = 0; i < 32 ; i++) {
 
@@ -713,7 +723,7 @@ public class RegisterFile extends Wrapper {
 
 
 
-        Mux32X1 m20 = new Mux32X1("mux20","32X1");
+        Mux32X1 m20 = new Mux32X1("mux20","37X1");
 
         for (int i = 0; i < 32 ; i++) {
 
@@ -737,7 +747,7 @@ public class RegisterFile extends Wrapper {
 
 
 
-        Mux32X1 m21 = new Mux32X1("mux21","32X1");
+        Mux32X1 m21 = new Mux32X1("mux21","37X1");
 
         for (int i = 0; i < 32 ; i++) {
 
@@ -761,7 +771,7 @@ public class RegisterFile extends Wrapper {
 
 
 
-        Mux32X1 m22 = new Mux32X1("mux22","32X1");
+        Mux32X1 m22 = new Mux32X1("mux22","37X1");
 
         for (int i = 0; i < 32 ; i++) {
 
@@ -785,7 +795,7 @@ public class RegisterFile extends Wrapper {
 
 
 
-        Mux32X1 m23 = new Mux32X1("mux23","32X1");
+        Mux32X1 m23 = new Mux32X1("mux23","37X1");
 
         for (int i = 0; i < 32 ; i++) {
 
@@ -809,7 +819,7 @@ public class RegisterFile extends Wrapper {
 
 
 
-        Mux32X1 m24 = new Mux32X1("mux24","32X1");
+        Mux32X1 m24 = new Mux32X1("mux24","37X1");
 
         for (int i = 0; i < 32 ; i++) {
 
@@ -833,7 +843,7 @@ public class RegisterFile extends Wrapper {
 
 
 
-        Mux32X1 m25 = new Mux32X1("mux25","32X1");
+        Mux32X1 m25 = new Mux32X1("mux25","37X1");
 
         for (int i = 0; i < 32 ; i++) {
 
@@ -857,7 +867,7 @@ public class RegisterFile extends Wrapper {
 
 
 
-        Mux32X1 m26 = new Mux32X1("mux2","32X1");
+        Mux32X1 m26 = new Mux32X1("mux2","37X1");
 
         for (int i = 0; i < 32 ; i++) {
 
@@ -881,7 +891,7 @@ public class RegisterFile extends Wrapper {
 
 
 
-        Mux32X1 m27 = new Mux32X1("mux27","32X1");
+        Mux32X1 m27 = new Mux32X1("mux27","37X1");
 
         for (int i = 0; i < 32 ; i++) {
 
@@ -905,7 +915,7 @@ public class RegisterFile extends Wrapper {
 
 
 
-        Mux32X1 m28 = new Mux32X1("mux28","32X1");
+        Mux32X1 m28 = new Mux32X1("mux28","37X1");
 
         for (int i = 0; i < 32 ; i++) {
 
@@ -929,7 +939,7 @@ public class RegisterFile extends Wrapper {
 
 
 
-        Mux32X1 m29 = new Mux32X1("mux29","32X1");
+        Mux32X1 m29 = new Mux32X1("mux29","37X1");
 
         for (int i = 0; i < 32 ; i++) {
 
@@ -953,7 +963,7 @@ public class RegisterFile extends Wrapper {
 
 
 
-        Mux32X1 m30 = new Mux32X1("mux30","32X1");
+        Mux32X1 m30 = new Mux32X1("mux30","37X1");
 
         for (int i = 0; i < 32 ; i++) {
 
@@ -977,7 +987,7 @@ public class RegisterFile extends Wrapper {
 
 
 
-        Mux32X1 m31 = new Mux32X1("mux31","32X1");
+        Mux32X1 m31 = new Mux32X1("mux31","37X1");
 
         for (int i = 0; i < 32 ; i++) {
 
@@ -1001,7 +1011,7 @@ public class RegisterFile extends Wrapper {
 
 
 
-        Mux32X1 m32 = new Mux32X1("mux32","32X1");
+        Mux32X1 m32 = new Mux32X1("mux32","37X1");
 
         for (int i = 0; i < 32 ; i++) {
 
@@ -1031,7 +1041,7 @@ public class RegisterFile extends Wrapper {
 
 
 
-        Mux32X1 m33 = new Mux32X1("mux33","32X1"); // read data 2
+        Mux32X1 m33 = new Mux32X1("mux33","37X1"); // read data 2
 
         for (int i = 0; i < 32 ; i++) {
 
@@ -1055,7 +1065,7 @@ public class RegisterFile extends Wrapper {
 
 
 
-        Mux32X1 m34 = new Mux32X1("mux34","32X1");
+        Mux32X1 m34 = new Mux32X1("mux34","37X1");
 
         for (int i = 0; i < 32 ; i++) {
 
@@ -1079,7 +1089,7 @@ public class RegisterFile extends Wrapper {
 
 
 
-        Mux32X1 m35 = new Mux32X1("mux35","32X1");
+        Mux32X1 m35 = new Mux32X1("mux35","37X1");
 
         for (int i = 0; i < 32 ; i++) {
 
@@ -1103,7 +1113,7 @@ public class RegisterFile extends Wrapper {
 
 
 
-        Mux32X1 m36 = new Mux32X1("mux36","32X1");
+        Mux32X1 m36 = new Mux32X1("mux36","37X1");
 
         for (int i = 0; i < 32 ; i++) {
 
@@ -1129,7 +1139,7 @@ public class RegisterFile extends Wrapper {
 
 
 
-        Mux32X1 m37 = new Mux32X1("mux37","32X1");
+        Mux32X1 m37 = new Mux32X1("mux37","37X1");
 
         for (int i = 0; i < 32 ; i++) {
 
@@ -1153,7 +1163,7 @@ public class RegisterFile extends Wrapper {
 
 
 
-        Mux32X1 m38 = new Mux32X1("mux38","32X1");
+        Mux32X1 m38 = new Mux32X1("mux38","37X1");
 
         for (int i = 0; i < 32 ; i++) {
 
@@ -1177,7 +1187,7 @@ public class RegisterFile extends Wrapper {
 
 
 
-        Mux32X1 m39 = new Mux32X1("mux39","32X1");
+        Mux32X1 m39 = new Mux32X1("mux39","37X1");
 
         for (int i = 0; i < 32 ; i++) {
 
@@ -1201,7 +1211,7 @@ public class RegisterFile extends Wrapper {
 
 
 
-        Mux32X1 m40 = new Mux32X1("mux40","32X1");
+        Mux32X1 m40 = new Mux32X1("mux40","37X1");
 
         for (int i = 0; i < 32 ; i++) {
 
@@ -1225,7 +1235,7 @@ public class RegisterFile extends Wrapper {
 
 
 
-        Mux32X1 m41 = new Mux32X1("mux41","32X1");
+        Mux32X1 m41 = new Mux32X1("mux41","37X1");
 
         for (int i = 0; i < 32 ; i++) {
 
@@ -1251,7 +1261,7 @@ public class RegisterFile extends Wrapper {
 
 
 
-        Mux32X1 m42 = new Mux32X1("mux42","32X1");
+        Mux32X1 m42 = new Mux32X1("mux42","37X1");
 
         for (int i = 0; i < 32 ; i++) {
 
@@ -1275,7 +1285,7 @@ public class RegisterFile extends Wrapper {
 
 
 
-        Mux32X1 m43 = new Mux32X1("mux43","32X1");
+        Mux32X1 m43 = new Mux32X1("mux43","37X1");
 
         for (int i = 0; i < 32 ; i++) {
 
@@ -1299,7 +1309,7 @@ public class RegisterFile extends Wrapper {
 
 
 
-        Mux32X1 m44 = new Mux32X1("mux44","32X1");
+        Mux32X1 m44 = new Mux32X1("mux44","37X1");
 
         for (int i = 0; i < 32 ; i++) {
 
@@ -1323,7 +1333,7 @@ public class RegisterFile extends Wrapper {
 
 
 
-        Mux32X1 m45 = new Mux32X1("mux45","32X1");
+        Mux32X1 m45 = new Mux32X1("mux45","37X1");
 
         for (int i = 0; i < 32 ; i++) {
 
@@ -1347,7 +1357,7 @@ public class RegisterFile extends Wrapper {
 
 
 
-        Mux32X1 m46 = new Mux32X1("mux46","32X1");
+        Mux32X1 m46 = new Mux32X1("mux46","37X1");
 
         for (int i = 0; i < 32 ; i++) {
 
@@ -1371,7 +1381,7 @@ public class RegisterFile extends Wrapper {
 
 
 
-        Mux32X1 m47 = new Mux32X1("mux47","32X1");
+        Mux32X1 m47 = new Mux32X1("mux47","37X1");
 
         for (int i = 0; i < 32 ; i++) {
 
@@ -1395,7 +1405,7 @@ public class RegisterFile extends Wrapper {
 
 
 
-        Mux32X1 m48 = new Mux32X1("mux48","32X1");
+        Mux32X1 m48 = new Mux32X1("mux48","37X1");
 
         for (int i = 0; i < 32 ; i++) {
 
@@ -1419,7 +1429,7 @@ public class RegisterFile extends Wrapper {
 
 
 
-        Mux32X1 m49 = new Mux32X1("mux49","32X1");
+        Mux32X1 m49 = new Mux32X1("mux49","37X1");
 
         for (int i = 0; i < 32 ; i++) {
 
@@ -1443,7 +1453,7 @@ public class RegisterFile extends Wrapper {
 
 
 
-        Mux32X1 m50 = new Mux32X1("mux50","32X1");
+        Mux32X1 m50 = new Mux32X1("mux50","37X1");
 
         for (int i = 0; i < 32 ; i++) {
 
@@ -1467,7 +1477,7 @@ public class RegisterFile extends Wrapper {
 
 
 
-        Mux32X1 m51 = new Mux32X1("mux51","32X1");
+        Mux32X1 m51 = new Mux32X1("mux51","37X1");
 
         for (int i = 0; i < 32 ; i++) {
 
@@ -1491,7 +1501,7 @@ public class RegisterFile extends Wrapper {
 
 
 
-        Mux32X1 m52 = new Mux32X1("mux52","32X1");
+        Mux32X1 m52 = new Mux32X1("mux52","37X1");
 
         for (int i = 0; i < 32 ; i++) {
 
@@ -1515,7 +1525,7 @@ public class RegisterFile extends Wrapper {
 
 
 
-        Mux32X1 m53 = new Mux32X1("mux53","32X1");
+        Mux32X1 m53 = new Mux32X1("mux53","37X1");
 
         for (int i = 0; i < 32 ; i++) {
 
@@ -1539,7 +1549,7 @@ public class RegisterFile extends Wrapper {
 
 
 
-        Mux32X1 m54 = new Mux32X1("mux54","32X1");
+        Mux32X1 m54 = new Mux32X1("mux54","37X1");
 
         for (int i = 0; i < 32 ; i++) {
 
@@ -1565,7 +1575,7 @@ public class RegisterFile extends Wrapper {
 
 
 
-        Mux32X1 m55 = new Mux32X1("mux55","32X1");
+        Mux32X1 m55 = new Mux32X1("mux55","37X1");
 
         for (int i = 0; i < 32 ; i++) {
 
@@ -1589,7 +1599,7 @@ public class RegisterFile extends Wrapper {
 
 
 
-        Mux32X1 m56 = new Mux32X1("mux56","32X1");
+        Mux32X1 m56 = new Mux32X1("mux56","37X1");
 
         for (int i = 0; i < 32 ; i++) {
 
@@ -1613,7 +1623,7 @@ public class RegisterFile extends Wrapper {
 
 
 
-        Mux32X1 m57 = new Mux32X1("mux57","32X1");
+        Mux32X1 m57 = new Mux32X1("mux57","37X1");
 
         for (int i = 0; i < 32 ; i++) {
 
@@ -1637,7 +1647,7 @@ public class RegisterFile extends Wrapper {
 
 
 
-        Mux32X1 m58 = new Mux32X1("mux58","32X1");
+        Mux32X1 m58 = new Mux32X1("mux58","37X1");
 
         for (int i = 0; i < 32 ; i++) {
 
@@ -1661,7 +1671,7 @@ public class RegisterFile extends Wrapper {
 
 
 
-        Mux32X1 m59 = new Mux32X1("mux59","32X1");
+        Mux32X1 m59 = new Mux32X1("mux59","37X1");
 
         for (int i = 0; i < 32 ; i++) {
 
@@ -1685,7 +1695,7 @@ public class RegisterFile extends Wrapper {
 
 
 
-        Mux32X1 m60 = new Mux32X1("mux60","32X1");
+        Mux32X1 m60 = new Mux32X1("mux60","37X1");
 
         for (int i = 0; i < 32 ; i++) {
 
@@ -1709,7 +1719,7 @@ public class RegisterFile extends Wrapper {
 
 
 
-        Mux32X1 m61 = new Mux32X1("mux61","32X1");
+        Mux32X1 m61 = new Mux32X1("mux61","37X1");
 
         for (int i = 0; i < 32 ; i++) {
 
@@ -1733,7 +1743,7 @@ public class RegisterFile extends Wrapper {
 
 
 
-        Mux32X1 m62 = new Mux32X1("mux62","32X1");
+        Mux32X1 m62 = new Mux32X1("mux62","37X1");
 
         for (int i = 0; i < 32 ; i++) {
 
@@ -1757,7 +1767,7 @@ public class RegisterFile extends Wrapper {
 
 
 
-        Mux32X1 m63 = new Mux32X1("mux63","32X1");
+        Mux32X1 m63 = new Mux32X1("mux63","37X1");
 
         for (int i = 0; i < 32 ; i++) {
 
@@ -1781,7 +1791,7 @@ public class RegisterFile extends Wrapper {
 
 
 
-        Mux32X1 m64 = new Mux32X1("mux64","32X1");
+        Mux32X1 m64 = new Mux32X1("mux64","37X1");
 
         for (int i = 0; i < 32 ; i++) {
 
