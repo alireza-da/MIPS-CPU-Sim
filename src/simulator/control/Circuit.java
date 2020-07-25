@@ -68,9 +68,9 @@ public class Circuit implements Runnable {
 //                    continue;
 //                }
 
-                System.out.println(dataStream.getInput(j));
+                //System.out.println(dataStream.getInput(j));
 
-                System.out.println(dataStream.getInput(j).getSource());
+                //System.out.println(dataStream.getInput(j).getSource());
                 Link input = dataStream.getInput(j);
 
                 Link output = dataStream.getOutput(j);
