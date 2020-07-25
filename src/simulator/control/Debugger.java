@@ -47,6 +47,16 @@ public class Debugger {
                         System.out.print("0");
                     }
                 }
+                System.out.println("inputs:");
+                System.out.println(linkable.getInputs().size());
+                for (Link link : linkable.getInputs()) {
+                    if (link.getSignal().booleanValue() == true){
+                        System.out.print("1");
+                    }
+                    if (link.getSignal().booleanValue() == false){
+                        System.out.print("0");
+                    }
+                }
                 System.out.println();
             }
             System.out.println("--------------------------------");

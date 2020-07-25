@@ -13,7 +13,7 @@ public class Adder extends Wrapper {
 
     @Override
     public void initialize() {
-
+        System.out.println(getInputs());
         HalfAdder h1 = new HalfAdder("h1" , "2X2" , getInput(0) , getInput(32));
         FullAdder f1 = new FullAdder("f1" , "3X2" , getInput(1) , getInput(33) , h1.getOutput(1));
         FullAdder f2 = new FullAdder("f2" , "3X2" , getInput(2) , getInput(34) , f1.getOutput(1));

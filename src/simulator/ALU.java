@@ -41,5 +41,6 @@ public class ALU extends Wrapper {
             addOutput(or32Bit.getOutput(0) , or32Bit.getOutput(1) , or32Bit.getOutput(2) , or32Bit.getOutput(3) , or32Bit.getOutput(4) , or32Bit.getOutput(5) , or32Bit.getOutput(6) , or32Bit.getOutput(7) , or32Bit.getOutput(8) , or32Bit.getOutput(9) , or32Bit.getOutput(10) , or32Bit.getOutput(11) , or32Bit.getOutput(12), or32Bit.getOutput(13) , or32Bit.getOutput(14) , or32Bit.getOutput(15) , or32Bit.getOutput(16) , or32Bit.getOutput(17) , or32Bit.getOutput(18) , or32Bit.getOutput(19) , or32Bit.getOutput(20) , or32Bit.getOutput(21) , or32Bit.getOutput(22) , or32Bit.getOutput(23) , or32Bit.getOutput(24) , or32Bit.getOutput(25) , or32Bit.getOutput(26) , or32Bit.getOutput(27) , or32Bit.getOutput(28) , or32Bit.getOutput(29) , or32Bit.getOutput(30) , or32Bit.getOutput(31));
         }
 
+
     }
 }

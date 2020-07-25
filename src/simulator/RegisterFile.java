@@ -7,12 +7,11 @@ import simulator.gates.combinational.And;
 
 import simulator.gates.sequential.Clock;
 
-import simulator.gates.sequential.flipflops.DFlipFlop;
 
 import simulator.network.Link;
 
 import simulator.wrapper.Wrapper;
-
+import simulator.wrapper.wrappers.Register;
 
 
 import java.util.ArrayList;
@@ -23,7 +22,7 @@ import java.util.HashMap;
 
 public class RegisterFile extends Wrapper {
 
-    private HashMap<Integer,Register> rf = new HashMap<>();
+    private HashMap<Integer, Register> rf = new HashMap<>();
 
     //clock cycle 0 , regWrite signal 1 , register read 1(2:6) , 2(7:11) ; register write(12:16) , write data ( 17:48 )
 
@@ -72,6 +71,10 @@ public class RegisterFile extends Wrapper {
     @Override
 
     public void initialize() {
+        // adding clock cycle to registers
+        for (int i = 0; i < 32; i++) {
+            rf.get(i).addInput(getInput(0));
+        }
 
         // write
 
@@ -155,93 +158,90 @@ public class RegisterFile extends Wrapper {
 
         }
 
-        rf.get(0).setWrite(a1.getOutput(0));
+        rf.get(0).addInput(a1.getOutput(0));
 
-        rf.get(1).setWrite(a2.getOutput(0));
+        rf.get(1).addInput(a2.getOutput(0));
 
-        rf.get(2).setWrite(a3.getOutput(0));
+        rf.get(2).addInput(a3.getOutput(0));
 
-        rf.get(3).setWrite(a4.getOutput(0));
+        rf.get(3).addInput(a4.getOutput(0));
 
-        rf.get(4).setWrite(a5.getOutput(0));
+        rf.get(4).addInput(a5.getOutput(0));
 
-        rf.get(5).setWrite(a6.getOutput(0));
+        rf.get(5).addInput(a6.getOutput(0));
 
-        rf.get(6).setWrite(a7.getOutput(0));
+        rf.get(6).addInput(a7.getOutput(0));
 
-        rf.get(7).setWrite(a8.getOutput(0));
+        rf.get(7).addInput(a8.getOutput(0));
 
-        rf.get(8).setWrite(a9.getOutput(0));
+        rf.get(8).addInput(a9.getOutput(0));
 
-        rf.get(9).setWrite(a10.getOutput(0));
+        rf.get(9).addInput(a10.getOutput(0));
 
-        rf.get(10).setWrite(a11.getOutput(0));
+        rf.get(10).addInput(a11.getOutput(0));
 
-        rf.get(11).setWrite(a12.getOutput(0));
+        rf.get(11).addInput(a12.getOutput(0));
 
-        rf.get(12).setWrite(a13.getOutput(0));
+        rf.get(12).addInput(a13.getOutput(0));
 
-        rf.get(13).setWrite(a14.getOutput(0));
+        rf.get(13).addInput(a14.getOutput(0));
 
-        rf.get(14).setWrite(a15.getOutput(0));
+        rf.get(14).addInput(a15.getOutput(0));
 
-        rf.get(15).setWrite(a16.getOutput(0));
+        rf.get(15).addInput(a16.getOutput(0));
 
-        rf.get(16).setWrite(a17.getOutput(0));
+        rf.get(16).addInput(a17.getOutput(0));
 
-        rf.get(17).setWrite(a18.getOutput(0));
+        rf.get(17).addInput(a18.getOutput(0));
 
-        rf.get(18).setWrite(a19.getOutput(0));
+        rf.get(18).addInput(a19.getOutput(0));
 
-        rf.get(19).setWrite(a20.getOutput(0));
+        rf.get(19).addInput(a20.getOutput(0));
 
-        rf.get(20).setWrite(a21.getOutput(0));
+        rf.get(20).addInput(a21.getOutput(0));
 
-        rf.get(21).setWrite(a22.getOutput(0));
+        rf.get(21).addInput(a22.getOutput(0));
 
-        rf.get(22).setWrite(a23.getOutput(0));
+        rf.get(22).addInput(a23.getOutput(0));
 
-        rf.get(23).setWrite(a24.getOutput(0));
+        rf.get(23).addInput(a24.getOutput(0));
 
-        rf.get(24).setWrite(a25.getOutput(0));
+        rf.get(24).addInput(a25.getOutput(0));
 
-        rf.get(25).setWrite(a26.getOutput(0));
+        rf.get(25).addInput(a26.getOutput(0));
 
-        rf.get(26).setWrite(a27.getOutput(0));
+        rf.get(26).addInput(a27.getOutput(0));
 
-        rf.get(27).setWrite(a28.getOutput(0));
+        rf.get(27).addInput(a28.getOutput(0));
 
-        rf.get(28).setWrite(a29.getOutput(0));
+        rf.get(28).addInput(a29.getOutput(0));
 
-        rf.get(29).setWrite(a30.getOutput(0));
+        rf.get(29).addInput(a30.getOutput(0));
 
-        rf.get(30).setWrite(a31.getOutput(0));
+        rf.get(30).addInput(a31.getOutput(0));
 
-        rf.get(31).setWrite(a32.getOutput(0));
+        rf.get(31).addInput(a32.getOutput(0));
 
         ArrayList<Link> writeData = new ArrayList<>();
 
-        int j = 17;
 
         for (int i = 0; i < 32; i++) {
 
-
-
-            writeData.add(getInput(j));
-
-            j++;
-
-
+            for (int k = 17; k < 49; k++) {
+                rf.get(i).addInput(getInput(k));
+            }
 
         }
 
 
-
-        for (int i = 0; i < 32; i++) {
-
-            rf.get(i).write(writeData);
-
-        }
+//
+//        for (int i = 0; i < 32; i++) {
+//
+//            for (int k = 2; k < 33; k++) {
+//                rf.get(i).addInput();
+//            }
+//
+//        }
 
 
 
@@ -255,7 +255,7 @@ public class RegisterFile extends Wrapper {
 
         for (int i = 0; i < 32 ; i++) {
 
-            m1.addInput(rf.get(i).dataToLogic().get(0));
+            m1.addInput(rf.get(i).getOutputs().get(0));
 
         }
 
@@ -283,7 +283,7 @@ public class RegisterFile extends Wrapper {
 
         for (int i = 0; i < 32 ; i++) {
 
-            m2.addInput(rf.get(i).dataToLogic().get(1));
+            m2.addInput(rf.get(i).getOutputs().get(1));
 
         }
 
@@ -307,7 +307,7 @@ public class RegisterFile extends Wrapper {
 
         for (int i = 0; i < 32 ; i++) {
 
-            m3.addInput(rf.get(i).dataToLogic().get(2));
+            m3.addInput(rf.get(i).getOutputs().get(2));
 
         }
 
@@ -331,7 +331,7 @@ public class RegisterFile extends Wrapper {
 
         for (int i = 0; i < 32 ; i++) {
 
-            m4.addInput(rf.get(i).dataToLogic().get(3));
+            m4.addInput(rf.get(i).getOutputs().get(3));
 
         }
 
@@ -355,7 +355,7 @@ public class RegisterFile extends Wrapper {
 
         for (int i = 0; i < 32 ; i++) {
 
-            m5.addInput(rf.get(i).dataToLogic().get(4));
+            m5.addInput(rf.get(i).getOutputs().get(4));
 
         }
 
@@ -379,7 +379,7 @@ public class RegisterFile extends Wrapper {
 
         for (int i = 0; i < 32 ; i++) {
 
-            m6.addInput(rf.get(i).dataToLogic().get(5));
+            m6.addInput(rf.get(i).getOutputs().get(5));
 
         }
 
@@ -403,7 +403,7 @@ public class RegisterFile extends Wrapper {
 
         for (int i = 0; i < 32 ; i++) {
 
-            m7.addInput(rf.get(i).dataToLogic().get(6)); // change
+            m7.addInput(rf.get(i).getOutputs().get(6)); // change
 
         }
 
@@ -427,7 +427,7 @@ public class RegisterFile extends Wrapper {
 
         for (int i = 0; i < 32 ; i++) {
 
-            m2.addInput(rf.get(i).dataToLogic().get(7));
+            m2.addInput(rf.get(i).getOutputs().get(7));
 
         }
 
@@ -451,7 +451,7 @@ public class RegisterFile extends Wrapper {
 
         for (int i = 0; i < 32 ; i++) {
 
-            m9.addInput(rf.get(i).dataToLogic().get(8));
+            m9.addInput(rf.get(i).getOutputs().get(8));
 
         }
 
@@ -475,7 +475,7 @@ public class RegisterFile extends Wrapper {
 
         for (int i = 0; i < 32 ; i++) {
 
-            m10.addInput(rf.get(i).dataToLogic().get(9));
+            m10.addInput(rf.get(i).getOutputs().get(9));
 
         }
 
@@ -499,7 +499,7 @@ public class RegisterFile extends Wrapper {
 
         for (int i = 0; i < 32 ; i++) {
 
-            m11.addInput(rf.get(i).dataToLogic().get(10));
+            m11.addInput(rf.get(i).getOutputs().get(10));
 
         }
 
@@ -523,7 +523,7 @@ public class RegisterFile extends Wrapper {
 
         for (int i = 0; i < 32 ; i++) {
 
-            m12.addInput(rf.get(i).dataToLogic().get(11));
+            m12.addInput(rf.get(i).getOutputs().get(11));
 
         }
 
@@ -547,7 +547,7 @@ public class RegisterFile extends Wrapper {
 
         for (int i = 0; i < 32 ; i++) {
 
-            m13.addInput(rf.get(i).dataToLogic().get(12));
+            m13.addInput(rf.get(i).getOutputs().get(12));
 
         }
 
@@ -571,7 +571,7 @@ public class RegisterFile extends Wrapper {
 
         for (int i = 0; i < 32 ; i++) {
 
-            m14.addInput(rf.get(i).dataToLogic().get(13));
+            m14.addInput(rf.get(i).getOutputs().get(13));
 
         }
 
@@ -595,7 +595,7 @@ public class RegisterFile extends Wrapper {
 
         for (int i = 0; i < 32 ; i++) {
 
-            m15.addInput(rf.get(i).dataToLogic().get(14));
+            m15.addInput(rf.get(i).getOutputs().get(14));
 
         }
 
@@ -619,7 +619,7 @@ public class RegisterFile extends Wrapper {
 
         for (int i = 0; i < 32 ; i++) {
 
-            m16.addInput(rf.get(i).dataToLogic().get(15));
+            m16.addInput(rf.get(i).getOutputs().get(15));
 
         }
 
@@ -643,7 +643,7 @@ public class RegisterFile extends Wrapper {
 
         for (int i = 0; i < 32 ; i++) {
 
-            m17.addInput(rf.get(i).dataToLogic().get(16));
+            m17.addInput(rf.get(i).getOutputs().get(16));
 
         }
 
@@ -667,7 +667,7 @@ public class RegisterFile extends Wrapper {
 
         for (int i = 0; i < 32 ; i++) {
 
-            m18.addInput(rf.get(i).dataToLogic().get(17));
+            m18.addInput(rf.get(i).getOutputs().get(17));
 
         }
 
@@ -691,7 +691,7 @@ public class RegisterFile extends Wrapper {
 
         for (int i = 0; i < 32 ; i++) {
 
-            m19.addInput(rf.get(i).dataToLogic().get(18));
+            m19.addInput(rf.get(i).getOutputs().get(18));
 
         }
 
@@ -717,7 +717,7 @@ public class RegisterFile extends Wrapper {
 
         for (int i = 0; i < 32 ; i++) {
 
-            m20.addInput(rf.get(i).dataToLogic().get(19));
+            m20.addInput(rf.get(i).getOutputs().get(19));
 
         }
 
@@ -741,7 +741,7 @@ public class RegisterFile extends Wrapper {
 
         for (int i = 0; i < 32 ; i++) {
 
-            m21.addInput(rf.get(i).dataToLogic().get(20));
+            m21.addInput(rf.get(i).getOutputs().get(20));
 
         }
 
@@ -765,7 +765,7 @@ public class RegisterFile extends Wrapper {
 
         for (int i = 0; i < 32 ; i++) {
 
-            m22.addInput(rf.get(i).dataToLogic().get(21));
+            m22.addInput(rf.get(i).getOutputs().get(21));
 
         }
 
@@ -789,7 +789,7 @@ public class RegisterFile extends Wrapper {
 
         for (int i = 0; i < 32 ; i++) {
 
-            m23.addInput(rf.get(i).dataToLogic().get(22));
+            m23.addInput(rf.get(i).getOutputs().get(22));
 
         }
 
@@ -813,7 +813,7 @@ public class RegisterFile extends Wrapper {
 
         for (int i = 0; i < 32 ; i++) {
 
-            m24.addInput(rf.get(i).dataToLogic().get(23));
+            m24.addInput(rf.get(i).getOutputs().get(23));
 
         }
 
@@ -837,7 +837,7 @@ public class RegisterFile extends Wrapper {
 
         for (int i = 0; i < 32 ; i++) {
 
-            m25.addInput(rf.get(i).dataToLogic().get(24));
+            m25.addInput(rf.get(i).getOutputs().get(24));
 
         }
 
@@ -861,7 +861,7 @@ public class RegisterFile extends Wrapper {
 
         for (int i = 0; i < 32 ; i++) {
 
-            m26.addInput(rf.get(i).dataToLogic().get(25));
+            m26.addInput(rf.get(i).getOutputs().get(25));
 
         }
 
@@ -885,7 +885,7 @@ public class RegisterFile extends Wrapper {
 
         for (int i = 0; i < 32 ; i++) {
 
-            m27.addInput(rf.get(i).dataToLogic().get(26));
+            m27.addInput(rf.get(i).getOutputs().get(26));
 
         }
 
@@ -909,7 +909,7 @@ public class RegisterFile extends Wrapper {
 
         for (int i = 0; i < 32 ; i++) {
 
-            m28.addInput(rf.get(i).dataToLogic().get(27));
+            m28.addInput(rf.get(i).getOutputs().get(27));
 
         }
 
@@ -933,7 +933,7 @@ public class RegisterFile extends Wrapper {
 
         for (int i = 0; i < 32 ; i++) {
 
-            m29.addInput(rf.get(i).dataToLogic().get(28));
+            m29.addInput(rf.get(i).getOutputs().get(28));
 
         }
 
@@ -957,7 +957,7 @@ public class RegisterFile extends Wrapper {
 
         for (int i = 0; i < 32 ; i++) {
 
-            m30.addInput(rf.get(i).dataToLogic().get(29));
+            m30.addInput(rf.get(i).getOutputs().get(29));
 
         }
 
@@ -981,7 +981,7 @@ public class RegisterFile extends Wrapper {
 
         for (int i = 0; i < 32 ; i++) {
 
-            m31.addInput(rf.get(i).dataToLogic().get(30));
+            m31.addInput(rf.get(i).getOutputs().get(30));
 
         }
 
@@ -1005,7 +1005,7 @@ public class RegisterFile extends Wrapper {
 
         for (int i = 0; i < 32 ; i++) {
 
-            m32.addInput(rf.get(i).dataToLogic().get(31));
+            m32.addInput(rf.get(i).getOutputs().get(31));
 
         }
 
@@ -1035,7 +1035,7 @@ public class RegisterFile extends Wrapper {
 
         for (int i = 0; i < 32 ; i++) {
 
-            m33.addInput(rf.get(i).dataToLogic().get(0));
+            m33.addInput(rf.get(i).getOutputs().get(0));
 
         }
 
@@ -1059,7 +1059,7 @@ public class RegisterFile extends Wrapper {
 
         for (int i = 0; i < 32 ; i++) {
 
-            m34.addInput(rf.get(i).dataToLogic().get(1));
+            m34.addInput(rf.get(i).getOutputs().get(1));
 
         }
 
@@ -1083,7 +1083,7 @@ public class RegisterFile extends Wrapper {
 
         for (int i = 0; i < 32 ; i++) {
 
-            m35.addInput(rf.get(i).dataToLogic().get(2));
+            m35.addInput(rf.get(i).getOutputs().get(2));
 
         }
 
@@ -1107,7 +1107,7 @@ public class RegisterFile extends Wrapper {
 
         for (int i = 0; i < 32 ; i++) {
 
-            m36.addInput(rf.get(i).dataToLogic().get(3));
+            m36.addInput(rf.get(i).getOutputs().get(3));
 
         }
 
@@ -1133,7 +1133,7 @@ public class RegisterFile extends Wrapper {
 
         for (int i = 0; i < 32 ; i++) {
 
-            m37.addInput(rf.get(i).dataToLogic().get(4));
+            m37.addInput(rf.get(i).getOutputs().get(4));
 
         }
 
@@ -1157,7 +1157,7 @@ public class RegisterFile extends Wrapper {
 
         for (int i = 0; i < 32 ; i++) {
 
-            m38.addInput(rf.get(i).dataToLogic().get(5));
+            m38.addInput(rf.get(i).getOutputs().get(5));
 
         }
 
@@ -1181,7 +1181,7 @@ public class RegisterFile extends Wrapper {
 
         for (int i = 0; i < 32 ; i++) {
 
-            m39.addInput(rf.get(i).dataToLogic().get(6));
+            m39.addInput(rf.get(i).getOutputs().get(6));
 
         }
 
@@ -1205,7 +1205,7 @@ public class RegisterFile extends Wrapper {
 
         for (int i = 0; i < 32 ; i++) {
 
-            m40.addInput(rf.get(i).dataToLogic().get(7));
+            m40.addInput(rf.get(i).getOutputs().get(7));
 
         }
 
@@ -1229,7 +1229,7 @@ public class RegisterFile extends Wrapper {
 
         for (int i = 0; i < 32 ; i++) {
 
-            m41.addInput(rf.get(i).dataToLogic().get(8));
+            m41.addInput(rf.get(i).getOutputs().get(8));
 
         }
 
@@ -1255,7 +1255,7 @@ public class RegisterFile extends Wrapper {
 
         for (int i = 0; i < 32 ; i++) {
 
-            m42.addInput(rf.get(i).dataToLogic().get(9));
+            m42.addInput(rf.get(i).getOutputs().get(9));
 
         }
 
@@ -1279,7 +1279,7 @@ public class RegisterFile extends Wrapper {
 
         for (int i = 0; i < 32 ; i++) {
 
-            m43.addInput(rf.get(i).dataToLogic().get(10));
+            m43.addInput(rf.get(i).getOutputs().get(10));
 
         }
 
@@ -1303,7 +1303,7 @@ public class RegisterFile extends Wrapper {
 
         for (int i = 0; i < 32 ; i++) {
 
-            m44.addInput(rf.get(i).dataToLogic().get(11));
+            m44.addInput(rf.get(i).getOutputs().get(11));
 
         }
 
@@ -1327,7 +1327,7 @@ public class RegisterFile extends Wrapper {
 
         for (int i = 0; i < 32 ; i++) {
 
-            m45.addInput(rf.get(i).dataToLogic().get(12));
+            m45.addInput(rf.get(i).getOutputs().get(12));
 
         }
 
@@ -1351,7 +1351,7 @@ public class RegisterFile extends Wrapper {
 
         for (int i = 0; i < 32 ; i++) {
 
-            m46.addInput(rf.get(i).dataToLogic().get(13));
+            m46.addInput(rf.get(i).getOutputs().get(13));
 
         }
 
@@ -1375,7 +1375,7 @@ public class RegisterFile extends Wrapper {
 
         for (int i = 0; i < 32 ; i++) {
 
-            m47.addInput(rf.get(i).dataToLogic().get(14));
+            m47.addInput(rf.get(i).getOutputs().get(14));
 
         }
 
@@ -1399,7 +1399,7 @@ public class RegisterFile extends Wrapper {
 
         for (int i = 0; i < 32 ; i++) {
 
-            m48.addInput(rf.get(i).dataToLogic().get(15));
+            m48.addInput(rf.get(i).getOutputs().get(15));
 
         }
 
@@ -1423,7 +1423,7 @@ public class RegisterFile extends Wrapper {
 
         for (int i = 0; i < 32 ; i++) {
 
-            m49.addInput(rf.get(i).dataToLogic().get(16));
+            m49.addInput(rf.get(i).getOutputs().get(16));
 
         }
 
@@ -1447,7 +1447,7 @@ public class RegisterFile extends Wrapper {
 
         for (int i = 0; i < 32 ; i++) {
 
-            m50.addInput(rf.get(i).dataToLogic().get(17));
+            m50.addInput(rf.get(i).getOutputs().get(17));
 
         }
 
@@ -1471,7 +1471,7 @@ public class RegisterFile extends Wrapper {
 
         for (int i = 0; i < 32 ; i++) {
 
-            m51.addInput(rf.get(i).dataToLogic().get(18));
+            m51.addInput(rf.get(i).getOutputs().get(18));
 
         }
 
@@ -1495,7 +1495,7 @@ public class RegisterFile extends Wrapper {
 
         for (int i = 0; i < 32 ; i++) {
 
-            m52.addInput(rf.get(i).dataToLogic().get(19));
+            m52.addInput(rf.get(i).getOutputs().get(19));
 
         }
 
@@ -1519,7 +1519,7 @@ public class RegisterFile extends Wrapper {
 
         for (int i = 0; i < 32 ; i++) {
 
-            m53.addInput(rf.get(i).dataToLogic().get(20));
+            m53.addInput(rf.get(i).getOutputs().get(20));
 
         }
 
@@ -1543,7 +1543,7 @@ public class RegisterFile extends Wrapper {
 
         for (int i = 0; i < 32 ; i++) {
 
-            m54.addInput(rf.get(i).dataToLogic().get(21));
+            m54.addInput(rf.get(i).getOutputs().get(21));
 
         }
 
@@ -1569,7 +1569,7 @@ public class RegisterFile extends Wrapper {
 
         for (int i = 0; i < 32 ; i++) {
 
-            m55.addInput(rf.get(i).dataToLogic().get(22));
+            m55.addInput(rf.get(i).getOutputs().get(22));
 
         }
 
@@ -1593,7 +1593,7 @@ public class RegisterFile extends Wrapper {
 
         for (int i = 0; i < 32 ; i++) {
 
-            m56.addInput(rf.get(i).dataToLogic().get(23));
+            m56.addInput(rf.get(i).getOutputs().get(23));
 
         }
 
@@ -1617,7 +1617,7 @@ public class RegisterFile extends Wrapper {
 
         for (int i = 0; i < 32 ; i++) {
 
-            m57.addInput(rf.get(i).dataToLogic().get(24));
+            m57.addInput(rf.get(i).getOutputs().get(24));
 
         }
 
@@ -1641,7 +1641,7 @@ public class RegisterFile extends Wrapper {
 
         for (int i = 0; i < 32 ; i++) {
 
-            m58.addInput(rf.get(i).dataToLogic().get(25));
+            m58.addInput(rf.get(i).getOutputs().get(25));
 
         }
 
@@ -1665,7 +1665,7 @@ public class RegisterFile extends Wrapper {
 
         for (int i = 0; i < 32 ; i++) {
 
-            m59.addInput(rf.get(i).dataToLogic().get(26));
+            m59.addInput(rf.get(i).getOutputs().get(26));
 
         }
 
@@ -1689,7 +1689,7 @@ public class RegisterFile extends Wrapper {
 
         for (int i = 0; i < 32 ; i++) {
 
-            m60.addInput(rf.get(i).dataToLogic().get(27));
+            m60.addInput(rf.get(i).getOutputs().get(27));
 
         }
 
@@ -1713,7 +1713,7 @@ public class RegisterFile extends Wrapper {
 
         for (int i = 0; i < 32 ; i++) {
 
-            m61.addInput(rf.get(i).dataToLogic().get(28));
+            m61.addInput(rf.get(i).getOutputs().get(28));
 
         }
 
@@ -1737,7 +1737,7 @@ public class RegisterFile extends Wrapper {
 
         for (int i = 0; i < 32 ; i++) {
 
-            m62.addInput(rf.get(i).dataToLogic().get(29));
+            m62.addInput(rf.get(i).getOutputs().get(29));
 
         }
 
@@ -1761,7 +1761,7 @@ public class RegisterFile extends Wrapper {
 
         for (int i = 0; i < 32 ; i++) {
 
-            m63.addInput(rf.get(i).dataToLogic().get(30));
+            m63.addInput(rf.get(i).getOutputs().get(30));
 
         }
 
@@ -1785,7 +1785,7 @@ public class RegisterFile extends Wrapper {
 
         for (int i = 0; i < 32 ; i++) {
 
-            m64.addInput(rf.get(i).dataToLogic().get(31));
+            m64.addInput(rf.get(i).getOutputs().get(31));
 
         }
 
@@ -1823,38 +1823,5 @@ public class RegisterFile extends Wrapper {
 
     }
 
-
-
-    public static void main(String[] args) {
-
-        Clock clock = new Clock("clock",100);//clock cycle 0 , regWrite signal 1 , register read 1(2:6) , 2(7:11) ; register write(12:16) , write data ( 17:48 )
-
-        RegisterFile registerFile = new RegisterFile("Register File", "49X64", clock.getOutput(0), Simulator.falseLogic
-
-                , Simulator.falseLogic , Simulator.falseLogic, Simulator.falseLogic, Simulator.falseLogic, Simulator.falseLogic,
-
-                Simulator.trueLogic , Simulator.falseLogic, Simulator.falseLogic , Simulator.falseLogic, Simulator.falseLogic );
-
-
-
-        for (int i = 0; i < 37; i++) {
-
-            registerFile.addInput(Simulator.falseLogic);
-
-        }
-
-
-
-        for (Link link: registerFile.getOutputs()
-
-        ) {
-
-            System.out.println(link.getSignal());
-
-        }
-
-
-
-    }
 
 }
