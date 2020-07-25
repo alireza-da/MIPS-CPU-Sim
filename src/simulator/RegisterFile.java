@@ -73,11 +73,11 @@ public class RegisterFile extends Wrapper {
     public void initialize() {
         // adding clock cycle to registers
 
-        for (Link link: getOutputs()
-             ) {
-            System.out.println(link.getSignal());
-
-        }
+//        for (Link link: getOutputs()
+//             ) {
+//            System.out.println(link.getSignal());
+//
+//        }
 
         setRf(new HashMap<Integer, Register>());
         for (int i = 0 ; i < 32 ; i++) {
