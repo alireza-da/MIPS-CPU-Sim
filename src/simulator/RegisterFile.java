@@ -22,7 +22,7 @@ import java.util.HashMap;
 
 public class RegisterFile extends Wrapper {
 
-    private HashMap<Integer, Register> rf = new HashMap<>();
+    private ArrayList<Register> rf = new ArrayList<>();
 
     //clock cycle 0 , regWrite signal 1 , register read 1(2:6) , 2(7:11) ; register write(12:16) , write data ( 17:48 )
 
@@ -35,7 +35,7 @@ public class RegisterFile extends Wrapper {
     @Override
     public void initialize() {
 
-        System.out.println(getInput(1).getSignal());
+        //System.out.println(getInput(1).getSignal());
         // adding clock cycle to registers
 
 //        for (Link link: getOutputs()
@@ -44,10 +44,9 @@ public class RegisterFile extends Wrapper {
 //
 //        }
 
-        setRf(new HashMap<Integer, Register>());
         for (int i = 0 ; i < 32 ; i++) {
             Register r = new Register("r"+i,"34X32");
-            getRf().put(i,r);
+            rf.add(r);
         }
         for (int i = 0; i < 32; i++) {
             rf.get(i).addInput(getInput(0));
@@ -55,7 +54,7 @@ public class RegisterFile extends Wrapper {
 
         // write
 
-        Dec5X32 dec = new Dec5X32("registerFileReadDec","5X32",getInput(16), getInput(15), getInput(14), getInput(13), getInput(12));
+        Dec5X32 dec = new Dec5X32("registerFileReadDec","5X32",getInput(12), getInput(13), getInput(14), getInput(15), getInput(16));
 
 
 
@@ -134,6 +133,8 @@ public class RegisterFile extends Wrapper {
 //        }
 
         //set write signal of register
+
+        Simulator.debugger.addTrackItem(dec,a32);
 
         rf.get(0).addInput(a1.getOutput(0));
 
@@ -365,7 +366,6 @@ public class RegisterFile extends Wrapper {
 
 
         addOutput(m6.getOutput(0)); //read data 1 bit 5
-
 
 
         Mux32X1 m7 = new Mux32X1("mux7","37X1");
@@ -1775,22 +1775,5 @@ public class RegisterFile extends Wrapper {
 
 
     }
-
-
-
-    public void setRf(HashMap<Integer, Register> rf) {
-
-        this.rf = rf;
-
-    }
-
-
-
-    public HashMap<Integer, Register> getRf() {
-
-        return rf;
-
-    }
-
 
 }
