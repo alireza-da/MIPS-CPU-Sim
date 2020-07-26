@@ -27,50 +27,14 @@ public class RegisterFile extends Wrapper {
     //clock cycle 0 , regWrite signal 1 , register read 1(2:6) , 2(7:11) ; register write(12:16) , write data ( 17:48 )
 
     public RegisterFile(String label, String stream, Link... links){
-
         super(label,stream,links);
-
-
-
-        // paste these after instantiation
-
-
-
-        /*for (int i = 0 ; i < 32 ; i++){
-
-            rf = new HashMap<>();
-
-            Register r = new Register();
-
-
-
-            for (int j = 0; j < 32; j++) {
-
-
-
-                DFlipFlop d = new DFlipFlop("d"+ j, getInput(0), Simulator.falseLogic);
-
-                //System.out.println(d);
-
-                r.getFlipFlops().add(d);
-
-            }
-
-            rf.put(i,r);
-
-            //System.out.println(rf);
-
-        }*/
-
-
-
     }
 
 
 
     @Override
-
     public void initialize() {
+
         // adding clock cycle to registers
 
 //        for (Link link: getOutputs()
@@ -157,8 +121,16 @@ public class RegisterFile extends Wrapper {
         And a31 = new And("and31",getInput(1),dec.getOutput(30));
 
         And a32 = new And("and32",getInput(1),dec.getOutput(31));
-
-
+//        System.out.println("inputs");
+//        for (Link link:getInputs()
+//             ) {
+//            System.out.println(link.getSignal());
+//        }
+//        System.out.println("outputs");
+//        for (Link link:getOutputs()
+//        ) {
+//            System.out.println(link.getSignal());
+//        }
 
         //set write signal of register
 

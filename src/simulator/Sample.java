@@ -14,6 +14,7 @@ import simulator.wrapper.wrappers.DFlipFlop;
 import simulator.wrapper.wrappers.RealDFlipFlop;
 import simulator.wrapper.wrappers.Register;
 
+import java.net.SocketImpl;
 import java.security.Signature;
 import java.util.HashMap;
 import java.util.List;
@@ -25,12 +26,25 @@ public class Sample {
         Clock c = new Clock("c", 500);
         RegisterFile registerFile = new RegisterFile("registerFile", "49X64",c.getOutput(0),Simulator.trueLogic);
 
-        for (int i = 0; i < 47; i++) {
+        for (int i = 0; i < 5; i++) {
+            registerFile.addInput(Simulator.falseLogic);
+        }
+        registerFile.addInput(Simulator.trueLogic);
+        for (int i = 0; i < 4; i++) {
+            registerFile.addInput(Simulator.falseLogic);
+        }
+
+        registerFile.addInput(Simulator.trueLogic);
+        for (int i = 0; i < 4; i++) {
+            registerFile.addInput(Simulator.falseLogic);
+        }
+
+        for (int i = 0; i < 32; i++) {
             registerFile.addInput(Simulator.falseLogic);
         }
 
         Simulator.debugger.addTrackItem(registerFile);
-        Simulator.debugger.setDelay(500);
+        Simulator.debugger.setDelay(250);
         Simulator.circuit.startCircuit();
 
 
