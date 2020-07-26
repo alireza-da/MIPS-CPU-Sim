@@ -35,6 +35,7 @@ public class RegisterFile extends Wrapper {
     @Override
     public void initialize() {
 
+        System.out.println(getInput(1).getSignal());
         // adding clock cycle to registers
 
 //        for (Link link: getOutputs()
@@ -209,8 +210,6 @@ public class RegisterFile extends Wrapper {
 
         }
 
-
-//
 //        for (int i = 0; i < 32; i++) {
 //
 //            for (int k = 2; k < 33; k++) {
@@ -220,10 +219,7 @@ public class RegisterFile extends Wrapper {
 //        }
 
 
-
         // read data 1
-
-
 
         //32 mux (32X1) with register addresses control lines
 
