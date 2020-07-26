@@ -23,7 +23,7 @@ import java.util.concurrent.TimeUnit;
 public class Sample {
 
     public static void main(String[] args) throws InterruptedException {
-        Clock c = new Clock("c", 500);
+        Clock c = new Clock("c", 100);
         RegisterFile registerFile = new RegisterFile("registerFile", "49X64",c.getOutput(0),Simulator.trueLogic);
 
         for (int i = 0; i < 5; i++) {
@@ -44,7 +44,7 @@ public class Sample {
         }
 
         Simulator.debugger.addTrackItem(registerFile);
-        Simulator.debugger.setDelay(250);
+        Simulator.debugger.setDelay(100);
         Simulator.circuit.startCircuit();
 
 

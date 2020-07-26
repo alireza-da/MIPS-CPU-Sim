@@ -95,7 +95,12 @@ public class Dec5X32 extends Wrapper {
         a32.addInput(getInput(0) ,  getInput(1), getInput(2) , getInput(3), getInput(4) ); //31
 
 
-        addOutput(a1.getOutput(0) , a2.getOutput(0) , a3.getOutput(0) , a4.getOutput(0), a5.getOutput(0) , a6.getOutput(0) , a7.getOutput(0) , a8.getOutput(0) , a9.getOutput(0) , a10.getOutput(0) , a11.getOutput(0) , a12.getOutput(0) , a13.getOutput(0) , a14.getOutput(0) , a15.getOutput(0) , a16.getOutput(0) , a17.getOutput(0) , a18.getOutput(0) , a19.getOutput(0) , a20.getOutput(0), a21.getOutput(0) , a22.getOutput(0), a23.getOutput(0), a24.getOutput(0), a25.getOutput(0), a26.getOutput(0), a27.getOutput(0), a28.getOutput(0), a29.getOutput(0), a30.getOutput(0) , a31.getOutput(0) , a32.getOutput(0));
+        addOutput(a1.getOutput(0) , a2.getOutput(0) , a3.getOutput(0) , a4.getOutput(0),
+                a5.getOutput(0) , a6.getOutput(0) , a7.getOutput(0) , a8.getOutput(0) , a9.getOutput(0) ,
+                a10.getOutput(0) , a11.getOutput(0) , a12.getOutput(0) , a13.getOutput(0) , a14.getOutput(0) , a15.getOutput(0) ,
+                a16.getOutput(0) , a17.getOutput(0) , a18.getOutput(0) , a19.getOutput(0) , a20.getOutput(0), a21.getOutput(0) ,
+                a22.getOutput(0), a23.getOutput(0), a24.getOutput(0), a25.getOutput(0), a26.getOutput(0), a27.getOutput(0),
+                a28.getOutput(0), a29.getOutput(0), a30.getOutput(0) , a31.getOutput(0) , a32.getOutput(0));
 
     }
 }
